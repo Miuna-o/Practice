@@ -51,4 +51,4 @@ class network(object):
         b2 += -epsilon * dX[3]
         self.model['W1'], self.model['b1'], self.model['W2'], self.model['b2'] = W1, b1, W2, b2
 
-        ###
+        ####
