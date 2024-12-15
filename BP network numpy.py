@@ -7,17 +7,12 @@ import numpy as np
 
 class network(object):
     def __init__(self, f_num,col_num):
-
-        # input X:example_num*f_num; col_num different class
-
         self.f_num = f_num
         self.col_num = col_num
-
         W1 = np.random.randn(f_num, 40)
         b1 = np.random.randn(1, 40)
         W2 = np.random.randn(40, col_num)
         b2 = np.random.randn(1, col_num)
-
         self.model = {'W1': W1, 'b1': b1, 'W2': W2, 'b2': b2}
 
     def forward(self, X, y):

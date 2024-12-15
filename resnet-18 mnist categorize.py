@@ -9,7 +9,7 @@ from torchvision.transforms import ToTensor
 model=resnet18(num_classes=10)
 model.conv1 = nn.Conv2d(1, 64, kernel_size=7, stride=2, padding=3, bias=False)
 
-def train_model(model, criterion, optimizer, train_loader, test_loader, epochs=5):
+def train_test_model(model, criterion, optimizer, train_loader, test_loader, epochs=5):
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model.to(device)
 
@@ -29,7 +29,7 @@ def train_model(model, criterion, optimizer, train_loader, test_loader, epochs=5
             optimizer.step()
 
             running_loss += loss.item()
-            predicted = torch.max(outputs, 1)
+            _, predicted = torch.max(outputs, 1)
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
 
@@ -49,9 +49,9 @@ def train_model(model, criterion, optimizer, train_loader, test_loader, epochs=5
                 loss = criterion(outputs, labels)
 
                 test_loss += loss.item()
-                _, predicted = torch.max(outputs, 1)
+                predicted = torch.max(outputs, 1)  # 获取预测的类别索引
                 total += labels.size(0)
-                correct += (predicted == labels).sum().item()
+                correct += (predicted == labels).sum().item()  # 计算正确预测的数量
 
         test_accuracy = 100 * correct / total
         print(f'Test Loss: {test_loss / len(test_loader)}, Test Accuracy: {test_accuracy}%')
@@ -67,5 +67,5 @@ if __name__=='__main__':
 
     criterion = nn.CrossEntropyLoss()
     optimizer = Adam(model.parameters(), lr=0.001)
-    train_model(model, criterion, optimizer, train, test, epochs=5)
+    train_test_model(model, criterion, optimizer, train, test, epochs=5)
 
