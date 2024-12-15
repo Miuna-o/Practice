@@ -5,8 +5,6 @@ import numpy as np
 class network(object):
     def __init__(self, f_num,col_num):
 
-        # input X:example_num*f_num; col_num different class
-
         self.f_num = f_num
         self.col_num = col_num
 
@@ -45,8 +43,6 @@ class network(object):
         return dW1, db1, dW2, db2
 
     def update_net(self, dX, epsilon):
-
-        # dX:[dW1,db1,dW2,db2]
 
         W1, b1, W2, b2 = self.model['W1'], self.model['b1'], self.model['W2'], self.model['b2']
         W1 += -epsilon * dX[0]

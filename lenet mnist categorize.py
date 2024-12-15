@@ -1,11 +1,11 @@
 import torch
+import tensorflow as tf
 from torch.nn import Module
 from torch import nn
 from torch import optim
 from torchvision import transforms
 from torchvision import datasets
 from torch.utils.data import DataLoader
-import tensorflow as tf
 
 class Lenet(Module):
     def __init__(self):

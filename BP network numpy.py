@@ -46,8 +46,6 @@ class network(object):
 
     def update_net(self, dX, epsilon=0.001):
 
-        # dX:[dW1,db1,dW2,db2]
-
         W1, b1, W2, b2 = self.model['W1'], self.model['b1'], self.model['W2'], self.model['b2']
         W1 += -epsilon * dX[0]
         b1 += -epsilon * dX[1]
@@ -103,6 +101,6 @@ if __name__=='__main__':
         net.update_net([dW1,db1,dW2,db2])
         i+=1
 
-    print('after %d iteration,best_acc: %f'%(i+1,best_acc),'\n','model:',best_model)
+    print('%d iteration,best_acc: %f'%(i+1,best_acc),'\n','model:',best_model)
     plot_decision_boundary(lambda x: predict(best_model,x))
     plt.show()

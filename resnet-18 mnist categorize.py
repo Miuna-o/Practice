@@ -49,9 +49,9 @@ def train_test_model(model, criterion, optimizer, train_loader, test_loader, epo
                 loss = criterion(outputs, labels)
 
                 test_loss += loss.item()
-                predicted = torch.max(outputs, 1)  # 获取预测的类别索引
+                predicted = torch.max(outputs, 1)
                 total += labels.size(0)
-                correct += (predicted == labels).sum().item()  # 计算正确预测的数量
+                correct += (predicted == labels).sum().item()
 
         test_accuracy = 100 * correct / total
         print(f'Test Loss: {test_loss / len(test_loader)}, Test Accuracy: {test_accuracy}%')

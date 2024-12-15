@@ -1,7 +1,4 @@
-# 60000条训练数据和10000条测试数据，28x28像素的灰度图像
-# 输入层有784个节点，隐含层有40个神经元，输出层有10个节点
 import tensorflow as tf
-import matplotlib.pyplot as plt
 import numpy as np
 
 class network(object):
@@ -48,8 +45,6 @@ class network(object):
 
     def update_net(self, dX, epsilon):
 
-        # dX:[dW1,db1,dW2,db2]
-
         W1, b1, W2, b2 = self.model['W1'], self.model['b1'], self.model['W2'], self.model['b2']
         W1 += -epsilon * dX[0]
         b1 += -epsilon * dX[1]
@@ -57,7 +52,6 @@ class network(object):
         b2 += -epsilon * dX[3]
         self.model['W1'], self.model['b1'], self.model['W2'], self.model['b2'] = W1, b1, W2, b2
 
-# 加载数据
 mnist = tf.keras.datasets.mnist
 (train_x, train_y), (test_x, test_y) = mnist.load_data()
 
