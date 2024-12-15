@@ -104,3 +104,5 @@ if __name__=='__main__':
     print('%d iteration,best_acc: %f'%(i+1,best_acc),'\n','model:',best_model)
     plot_decision_boundary(lambda x: predict(best_model,x))
     plt.show()
+
+    ##
