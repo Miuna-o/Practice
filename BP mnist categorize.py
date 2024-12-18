@@ -67,10 +67,10 @@ print('\n X_train_flat:%s, y_train_onehot:%s, X_test_flat:%s, y_test_onehot:%s' 
 print(y_train_onehot[2])
 def main():
     net=network(28*28,10)
-    for epoch in range(500):#100时accuracy为33%左右  500时accuracy为62%左右 将神经元数量从40改为128后accuracy为72%，但速度大大下降；
+    for epoch in range(500):#100时accuracy为33%左右  500时accuracy为62%左右 将神经元数量从40改为128后accuracy为72%，但速度下降了一点；
         loss=net.forward(X_train_flat,y_train_onehot,y_train)
         dW1, db1, dW2, db2 = net.backward(X_train_flat)
-        net.update_net([dW1, db1, dW2, db2],epsilon=0.00000001)
+        net.update_net([dW1, db1, dW2, db2],epsilon=0.00001)
         print(f'Epoch{epoch},loss:{loss}')
 
     net.forward(X_test_flat,y_test_onehot,y_train)

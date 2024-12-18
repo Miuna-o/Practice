@@ -29,7 +29,7 @@ def train_test_model(model, criterion, optimizer, train_loader, test_loader, epo
             optimizer.step()
 
             running_loss += loss.item()
-            _, predicted = torch.max(outputs, 1)
+            predicted = torch.max(outputs, 1)[1]
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
 
@@ -49,7 +49,7 @@ def train_test_model(model, criterion, optimizer, train_loader, test_loader, epo
                 loss = criterion(outputs, labels)
 
                 test_loss += loss.item()
-                predicted = torch.max(outputs, 1)
+                predicted = torch.max(outputs, 1)[1]
                 total += labels.size(0)
                 correct += (predicted == labels).sum().item()
 
@@ -69,3 +69,4 @@ if __name__=='__main__':
     optimizer = Adam(model.parameters(), lr=0.001)
     train_test_model(model, criterion, optimizer, train, test, epochs=5)
 ####
+
